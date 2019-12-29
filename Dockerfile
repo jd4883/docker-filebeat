@@ -12,6 +12,7 @@ ENV     FILEBEAT_URL https://download.elastic.co/beats/filebeat/filebeat-${FILEB
 ENV     FILEBEAT_HOME /opt/filebeat-${FILEBEAT_VERSION}-x86_64
 ENV     PATH $PATH:${FILEBEAT_HOME}
 
+VOLUME config
 WORKDIR /opt/
 
 RUN     apk add --update python curl && \
@@ -22,6 +23,7 @@ RUN     apk add --update python curl && \
 
 RUN     curl -sL ${FILEBEAT_URL} | tar xz -C .
 ADD     filebeat.yml ${FILEBEAT_HOME}/
+COPY    ./config/filebeat.yml ${FILEBEAT_HOME}/
 ADD     docker-entrypoint.sh    /entrypoint.sh
 RUN     chmod +x /entrypoint.sh
 

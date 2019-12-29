@@ -11,7 +11,7 @@ ENV     FILEBEAT_URL https://download.elastic.co/beats/filebeat/filebeat-${FILEB
 # Environment variables
 ENV     FILEBEAT_HOME /opt/filebeat-${FILEBEAT_VERSION}-x86_64
 ENV     PATH $PATH:${FILEBEAT_HOME}
-
+VOLUME  /certs /containers /config
 WORKDIR /opt/
 
 RUN     apk add --update python curl && \

@@ -21,7 +21,7 @@ RUN     apk add --update python curl && \
         /usr/glibc/usr/bin/ldconfig /lib /usr/glibc/usr/lib
 
 RUN     curl -sL ${FILEBEAT_URL} | tar xz -C .
-ADD     filebeat.yml ${FILEBEAT_HOME}/
+ADD     /config/filebeat.yml ${FILEBEAT_HOME}/
 ADD     docker-entrypoint.sh    /entrypoint.sh
 RUN     chmod +x /entrypoint.sh
 
